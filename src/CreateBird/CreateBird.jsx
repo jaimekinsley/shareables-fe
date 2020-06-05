@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import { postBird } from '../services/birds.js';
 
-export default class CreateBird extends Component {
+class CreateBird extends Component {
     state = {
         bird: '',
-        season: '',
-        spotted: ''
+        season: ''
     }
 
     handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     handleSubmit = event => {
         event.preventDefault();
-        postBird(this.state.bird, this.state.season)
+        const { bird, season } = this.state;
+        postBird(bird, season);
     }
 
     render() {
-        const { bird, season, spotted } = this.state;
+        const { bird, season } = this.state;
 
         return (
             <form>
@@ -28,4 +28,6 @@ export default class CreateBird extends Component {
             </form>
         )
     }
-}
+};
+
+export default CreateBird;
